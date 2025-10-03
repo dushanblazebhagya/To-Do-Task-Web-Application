@@ -63,9 +63,9 @@ describe("Task API", () => {
     const res = await request(app).get("/tasks");
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.length).toBe(5); // latest 5
-    expect(res.body[0].title).toBe("Task 6"); // newest first
-    expect(res.body[4].title).toBe("Task 2"); // 5th newest
+    expect(res.body.length).toBe(5);
+    expect(res.body[0].title).toBe("Task 6"); 
+    expect(res.body[4].title).toBe("Task 2");
   });
 
   it("should mark a task as done", async () => {
