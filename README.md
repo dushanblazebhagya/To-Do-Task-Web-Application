@@ -104,23 +104,6 @@ Response:
 
 ---
 
-## Project Structure
-.
-├── backend/            # Node.js backend API
-│   ├── server.js
-│   ├── models/
-│   └── tests/
-├── frontend/           # React frontend
-│   ├── src/
-│   ├── package.json
-│   └── vite.config.js
-├── docker-compose.yml
-├── Dockerfile          # Backend Dockerfile
-├── Dockerfile.frontend # Frontend Dockerfile
-└── README.md
-
----
-
 ## Notes
 - All services run via Docker; no local setup needed.  
 - Database connection uses Docker service hostname (`db`) inside docker-compose.yml.  
