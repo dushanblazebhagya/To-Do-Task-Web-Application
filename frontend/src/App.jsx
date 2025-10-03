@@ -6,54 +6,57 @@ import "./index.css";
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  // Fetch Tasks
+  // Fetch Latest 5 Tasks
+  const fetchTasks = async () => {
+    try {
+      const res = await fetch("http://localhost:8000/tasks");
+      const data = await res.json();
+      setTasks(data);
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
+    }
+  };
+
   useEffect(() => {
-    fetch("http://localhost:8000/tasks")
-      .then((res) => res.json())
-      .then((data) => setTasks(data))
-      .catch((err) => console.error("Error fetching tasks:", err));
+    fetchTasks();
   }, []);
 
-  // Add A Task
+  // Add a Task
   const addTask = async (task) => {
     try {
-      const res = await fetch("http://localhost:8000/tasks", {
+      await fetch("http://localhost:8000/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(task),
       });
-      const newTask = await res.json();
-      setTasks([newTask, ...tasks]);
+      // Refresh Tasks
+      fetchTasks();
     } catch (err) {
       console.error("Error adding task:", err);
     }
   };
 
-  // Click Done Button
+  // Done Tasks
   const markDone = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8000/tasks/${id}`, {
+      await fetch(`http://localhost:8000/tasks/${id}/done`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ completed: true }),
       });
-      const updated = await res.json();
-
-      setTasks(tasks.map((task) => (task.id === id ? updated : task)));
+      // Refresh Tasks
+      fetchTasks();
     } catch (err) {
-      console.error("Error marking task as done:", err);
+      console.error("Error marking task done:", err);
     }
   };
 
   return (
     <div className="app-container">
-      {}
       <div className="left-panel">
         <h2>Add a Task</h2>
         <TaskForm addTask={addTask} />
       </div>
 
-      {}
       <div className="right-panel">
         <h2>Added Tasks</h2>
         <TaskList tasks={tasks} markDone={markDone} />

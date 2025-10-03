@@ -6,16 +6,18 @@
   gap: 40px;
   padding: 30px;
   font-family: Arial, sans-serif;
+   background: #f7f6f6;                
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 /* Left Side */
 .left-panel {
-  flex: 1;
-  max-width: 40%;
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  flex: 1.2;
+  max-width: 45%;
+  padding: 30px 20px;
+  border-right: 2px solid #ffffff;
+ 
 }
 
 .left-panel h2 {
@@ -26,6 +28,7 @@
 /* Right Side */
 .right-panel {
   flex: 2;
+  padding: 30px 20px;
 }
 
 .right-panel h2 {
@@ -37,27 +40,60 @@
 .task-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px; 
+  padding: 20px;
+  min-height: 350px; 
+  justify-content: flex-start;
+  position: relative;
+  max-width: 400px;
 }
 
 .task-form input,
 .task-form textarea {
-  padding: 10px;
+  width: 100%;
+  max-width: 380px; 
+  padding: 14px 16px; 
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.task-form input:focus,
+.task-form textarea:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.15);
+}
+
+.task-form textarea {
+  min-height: 120px; 
+  resize: vertical;
 }
 
 .task-form button {
+  position: absolute;
+  right: 20px;   
+  bottom: 12px;  
   background: #0077ff;
   color: #fff;
-  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 24px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+
 }
 
 .task-form button:hover {
   background: #005fcc;
+  transform: translateY(-1px);
+}
+
+.task-form button:active {
+  transform: translateY(0);
 }
 
 /* Task list */
@@ -68,7 +104,7 @@
 }
 
 .task-item {
-  background: #fff;
+  background: #ede7e7;
   padding: 15px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
